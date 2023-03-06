@@ -28,6 +28,28 @@ else {
 alert('Error :' + response.errorMessage);
 }
 }
+ 
+function displayEventMessage(eventObj) {
+    alert(eventObj.context + ' ' + eventObj.eventName);
+}
+ //use addEventHandlers method to add handlers to gigya global events
+ //All the methods in the SAP Customer Data Cloud Web SDK have a common signature:
+// gigya.<namespace>.<method_name>(params);
+// e.g., gigya.socialize.showShareBarUI(params)
+ 
+ /* --CSP use *.<CDC-Data-Center>
+ <meta http-equiv="content-security-policy" content="
+	script-src 'unsafe-eval' 'self' *.sapcdm.cn;
+	img-src 'self' *.sapcdm.cn;
+">
+ */
+ 
+gigya.socialize.addEventHandlers({
+    onError: displayEventMessage,
+});
+gigya.accounts.addEventHandlers({
+    onError: displayEventMessage,
+});
 </script>
 </div>
 </body>
